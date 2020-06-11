@@ -359,6 +359,51 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
+    case 'keycloak': {
+      const keycloak = new purest({
+        provider: 'keycloak',
+        config:
+        // {
+        //   'keycloak': {
+        //     "realm": "zhgnjlkp",
+        //     "auth-server-url": "https://sso-dev.pathfinder.gov.bc.ca/auth",
+        //     "ssl-required": "external",
+        //     "resource": "strapi-test",
+        //     "public-client": true,
+        //     "verify-token-audience": true,
+        //     "use-resource-role-mappings": true,
+        //     "confidential-port": 0
+        //   }
+        {
+          'https://sso-dev.pathfinder.gov.bc.ca/auth/realm/zhgnjlkp': {
+            '__domain': {
+              'auth': {
+                'auth': {
+                  'bearer': '[0]'
+                }
+              }
+            },
+            '{endpoint}': {
+              '__path': {
+                'alias': '__default'
+              }
+            }
+          }
+        }
+        // }
+      });
+      keycloak.query().get('protocol/openid-connect/userinfo').auth(access_token).request((err, res, body) => {
+        if (err) {
+          callback(err);
+        } else {
+          callback(null, {
+            username: body.preferred_username,
+            email: body.email
+          });
+        }
+      });
+      break;
+    }
     default:
       callback({
         message: 'Unknown provider.',

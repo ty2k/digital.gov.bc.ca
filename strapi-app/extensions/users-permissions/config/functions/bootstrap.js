@@ -22,6 +22,17 @@ module.exports = async () => {
       enabled: true,
       icon: 'envelope',
     },
+    keycloak: {
+      enabled: false,
+      icon: 'key',
+      key: '',
+      secret: '',
+      oauth: 2,
+      authorize_url: '', // authorization_endpoint
+      access_url: '', // token_endpoint
+      callback: '/auth/keycloak/callback',
+      scope: ['openid']
+    },
     discord: {
       enabled: false,
       icon: 'discord',

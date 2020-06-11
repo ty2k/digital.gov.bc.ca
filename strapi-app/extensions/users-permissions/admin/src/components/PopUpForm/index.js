@@ -60,6 +60,8 @@ class PopUpForm extends React.Component {
     switch (this.props.dataToEdit) {
       case 'discord':
         return `${strapi.backendURL}/connect/discord/callback`;
+      case 'keycloak':
+        return `${strapi.backendURL}/connect/keycloak/callback`;
       case 'facebook':
         return `${strapi.backendURL}/connect/facebook/callback`;
       case 'google':
@@ -145,6 +147,7 @@ class PopUpForm extends React.Component {
     );
 
     if (settingType === 'providers') {
+      console.log("The world is not enough!!")
       return (
         <>
           <Input
@@ -177,13 +180,13 @@ class PopUpForm extends React.Component {
                   includes(value, 'callback') || includes(value, 'redirect_uri')
                     ? 'redirectURL.front-end'
                     : value
-                }.label`,
+                  }.label`,
               }}
               name={`${settingType}.${dataToEdit}.${value}`}
               onFocus={
                 includes(value, 'callback') || includes(value, 'redirect_uri')
                   ? this.handleFocus
-                  : () => {}
+                  : () => { }
               }
               onBlur={
                 includes(value, 'callback') || includes(value, 'redirect_uri')
@@ -209,7 +212,7 @@ class PopUpForm extends React.Component {
               }}
               name="noName"
               type="text"
-              onChange={() => {}}
+              onChange={() => { }}
               value={this.getRedirectURIProviderConf()}
               validations={{}}
             />
@@ -229,6 +232,7 @@ class PopUpForm extends React.Component {
         </a>
       ),
     };
+    console.log("No setting providers")
 
     return (
       <>
@@ -313,9 +317,9 @@ class PopUpForm extends React.Component {
       display && en[display] ? (
         <FormattedMessage id={`users-permissions.${display}`} />
       ) : (
-        <span>{capitalize(dataToEdit)}</span>
-      );
-
+          <span>{capitalize(dataToEdit)}</span>
+        );
+    console.log('the final return statement')
     return (
       <Modal isOpen={isOpen} onToggle={this.context.unsetDataToEdit}>
         <HeaderModal>
