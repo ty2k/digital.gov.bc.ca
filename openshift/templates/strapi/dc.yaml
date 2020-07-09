@@ -40,20 +40,25 @@ objects:
                 - name: DATABASE_PORT
                   value: "27017"
                 - name: DATABASE_NAME
+                  value: ''
                   valueFrom:
                     secretKeyRef:
                       name: mongodb 
                       key: mongo-url
                 - name: DATABASE_USERNAME
+                  value: ''
                   valueFrom:
                     secretKeyRef:
                       name: mongodb 
                       key: username
                 - name: DATABASE_PASSWORD
+                  value: ''
                   valueFrom:
                     secretKeyRef:
                       name: mongodb 
                       key: password
+                - name: NODE_ENV
+                  value: production
               resources: {}
               terminationMessagePath: /dev/termination-log
               terminationMessagePolicy: File

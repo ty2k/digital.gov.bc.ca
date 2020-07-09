@@ -23,17 +23,15 @@ objects:
       contextDir: strapi-app
       git:
         ref: ${GIT_REF}
-        uri: https://github.com/bcgov/digital.gov.bc.ca
+        uri: ${GIT_REPO}
       type: Git
     strategy:
-      type: Source
-      sourceStrategy:
+      dockerStrategy:
         from:
-          kind: DockerImage
-          name: 'bucharestgold/centos7-s2i-nodejs:latest'
-        env:
-          - name: YARN_ENABLED
-            value: 'true'
+          kind: ImageStreamTag
+          name: node:12.17.0-alpine
+          namespace: xdwiwd-tools
+      type: Docker
     successfulBuildsHistoryLimit: 5
     triggers:
     - github:
@@ -75,3 +73,6 @@ parameters:
 - name: GIT_REF
   value: master 
   description: the git branch
+- name: GIT_REPO
+  value: https://github.com/bcgov/digital.gov.bc.ca 
+  description: the github repo
