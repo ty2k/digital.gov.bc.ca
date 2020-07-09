@@ -26,12 +26,14 @@ objects:
         uri: https://github.com/bcgov/digital.gov.bc.ca
       type: Git
     strategy:
-      dockerStrategy:
+      type: Source
+      sourceStrategy:
         from:
-          kind: ImageStreamTag
-          name: node:12.17.0-alpine
-          namespace: xdwiwd-tools
-      type: Docker
+          kind: DockerImage
+          name: 'bucharestgold/centos7-s2i-nodejs:latest'
+        env:
+          - name: YARN_ENABLED
+            value: 'true'
     successfulBuildsHistoryLimit: 5
     triggers:
     - github:
