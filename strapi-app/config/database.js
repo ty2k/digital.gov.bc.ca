@@ -5,6 +5,7 @@ module.exports = ({ env }) => ({
       'connector': 'mongoose',
       'settings': {
         'client': 'mongo',
+        'uri': env('DATABASE_URI'),
         'database': env('DATABASE_NAME'),
         'username': env('DATABASE_USERNAME'),
         'password': env('DATABASE_PASSWORD'),
