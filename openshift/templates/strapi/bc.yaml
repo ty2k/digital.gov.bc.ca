@@ -22,7 +22,7 @@ objects:
     source:
       contextDir: strapi-app
       git:
-        ref: dep-63-stapi
+        ref: ${GIT_REF}
         uri: https://github.com/bcgov/digital.gov.bc.ca
       type: Git
     strategy:
@@ -72,3 +72,6 @@ parameters:
 - name: IMAGE_TAG
   required: true
   description: the output image stream tag
+- name: GIT_REF
+  value: master 
+  description: the git branch
