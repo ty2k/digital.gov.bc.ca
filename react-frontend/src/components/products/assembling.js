@@ -12,14 +12,13 @@ const cards = [
       >
         The Exchange Lab
       </a>{' '}
-      provides training, community, and digital service delivery residency
-      programs that apply Agile and DevOps methods that can help you build your
+      provides training, community, and coaching to help your team apply Agile and DevOps methods to help with effective digital service delivery. 
       team.
     </p>
   </div>,
   <div className="cardContent">
     <p>
-      If you need to contract a team and want them to follow an Agile process,
+      If you need to procure talent for a team and want them to work in the open and follow an Agile process,
       you can use the{' '}
       <a className="productCardLink" target="_blank">
         Digital Marketplace.
