@@ -2,11 +2,17 @@ name: Test WorkflowDispatch
 on: 
   workflow_dispatch:
     inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
       tags:
+        required: true
         description: 'Test workflow dispatch tags'
 jobs:
   printInputs:
     runs-on: ubuntu-latest
     steps: 
       - run: |
-      echo "Tags: ${{ github.event.inputs.tags }}"
+            echo "Log level: ${{ github.event.inputs.logLevel }}"
+            echo "Tags: ${{ github.event.inputs.tags }}"
